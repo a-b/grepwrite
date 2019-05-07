@@ -1,4 +1,4 @@
-# grepwriter
+# Grep Write
 Write grep -n output back to files
 
 # Why?
@@ -18,9 +18,9 @@ path_to_file:line_number:column content of the line
 Commands like `grep -n pattern .` or `rg pattern --vimgrep` outputting results
 that way.
 
-General idea is you can run something like 
+General idea:
 `grep -n pattern . | sed 's/pattern/new_pattern' | grepwrite`
-and all your changes would be applied to the filesystem.
+This will write all your changes back to files.
 
 # Options
 

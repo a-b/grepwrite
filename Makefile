@@ -1,3 +1,3 @@
 test:
 	@go build
-	@cat sample_output.txt | ./grepwriter
+	@cat sample_output.txt | ./grepwrite
