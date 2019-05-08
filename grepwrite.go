@@ -1,8 +1,9 @@
-package main
+package grepwrite
 
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"os"
@@ -10,7 +11,14 @@ import (
 	"strings"
 )
 
-func main() {
+const versino = "0.0.1"
+
+type GrepWrite struct {
+	In, Out, Err io.Writer
+}
+
+func (gw GrepWrite) Run(args []string) int {
+
 	// if err := run(os.Stdin); err != nil {
 	// 	fmt.Fprintln(os.Stderr, err)
 	// 	os.Exit(1)
@@ -109,7 +117,8 @@ func main() {
 	// if err != io.EOF {
 	// 	panic(err)
 	// }
-}
 
-// func run(r io.Reader) {
-// }
+	// func run(r io.Reader) {
+	// }
+	return 1
+}

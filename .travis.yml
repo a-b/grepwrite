@@ -1,0 +1,13 @@
+sudo: false
+language: go
+go:
+  - "1.12.x"
+  - master
+env:
+  CGO_ENABLED=0
+install:
+  - go get golang.org/x/text/encoding
+  - go get golang.org/x/text/transform
+  - go get gopkg.in/yaml.v2
+script:
+  - go test -v ./...
