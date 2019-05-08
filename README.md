@@ -1,4 +1,4 @@
-# Grep Write
+# Grep Write [![Build Status](https://travis-ci.org/a-b/grepwrite.svg?branch=master)](https://travis-ci.org/a-b/grepwrite)
 Write grep -n output back to files
 
 # Why?
