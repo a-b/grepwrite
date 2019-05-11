@@ -27,4 +27,11 @@ This will write all your changes back to files.
 -d  Dry run.
 -i  Interactive mode. Confirm each change, or all changes per file.
 
+# Roadmap
+
+1. Basic implementation
+1. Optimize to do single write per file
+1. Optimize to write files in threads
+1. Confirm each line/file similar to `git add -p`
+
 # vim:tw=78
