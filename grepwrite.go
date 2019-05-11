@@ -11,13 +11,15 @@ import (
 	"strings"
 )
 
-const versino = "0.0.1"
+const version = "0.0.1"
 
 type GrepWrite struct {
-	In, Out, Err io.Writer
+	In       io.Reader
+	Out, Err io.Writer
 }
 
 func (gw GrepWrite) Run(args []string) int {
+	fmt.Printf("Args: %v\n", args)
 
 	// if err := run(os.Stdin); err != nil {
 	// 	fmt.Fprintln(os.Stderr, err)
@@ -34,18 +36,16 @@ func (gw GrepWrite) Run(args []string) int {
 	// 	}
 	// }()
 
-	input := os.Stdin
-
-	scanner := bufio.NewScanner(input)
+	scanner := bufio.NewScanner(gw.In)
 	if err := scanner.Err(); err != nil {
 		log.Println(err)
 	}
 
 	for scanner.Scan() {
 		text := scanner.Text()
-		fmt.Printf("--> %v\n", text)
+		fmt.Printf("- read -> %v\n", text)
 
-		fmt.Printf("input: %s\n", text)
+		fmt.Printf("\ninput: %s\n", text)
 
 		// {filename}|{lnum}[ col {col}][ {type} [{nr}]]| {text}
 		data := strings.Split(text, " ")
@@ -56,10 +56,10 @@ func (gw GrepWrite) Run(args []string) int {
 
 		file, lineNumber, _ := locationData[0], locationData[1], locationData[2]
 
-		// fmt.Printf("--> %q\n", file)
-		// fmt.Printf("--> %q\n", lineNumber)
+		fmt.Printf("- file -> %q\n", file)
+		fmt.Printf("- line -> %q\n", lineNumber)
 		// fmt.Printf("--> %q\n", columnNumber)
-		// fmt.Printf("--> %q\n", text)
+		fmt.Printf("- text -> %q\n", text)
 
 		fi, err := os.Lstat(file)
 		if err != nil {
@@ -101,9 +101,12 @@ func (gw GrepWrite) Run(args []string) int {
 		}
 
 		output := strings.Join(lines, "\n")
-		err = ioutil.WriteFile(file, []byte(output), permissions)
-		if err != nil {
-			log.Fatalln(err)
+		if false {
+
+			err = ioutil.WriteFile(file, []byte(output), permissions)
+			if err != nil {
+				log.Fatalln(err)
+			}
 		}
 	}
 
@@ -120,5 +123,5 @@ func (gw GrepWrite) Run(args []string) int {
 
 	// func run(r io.Reader) {
 	// }
-	return 1
+	return 0
 }

@@ -1,2 +1,2 @@
-test/path_to_file:2: pattern
-test/path_to_file:3: pattern2
+fileA:2:line2
+folderA/fileB:3:line3

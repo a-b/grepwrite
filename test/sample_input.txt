@@ -1,0 +1,2 @@
+fileA:2:  lINE2
+folderA/fileB:3:   newLine3
